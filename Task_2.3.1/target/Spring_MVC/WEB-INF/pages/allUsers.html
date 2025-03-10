@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+
+<h2>ALL USERS</h2>
+<br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <!-- Thymeleaf цикл для отображения списка пользователей -->
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.login}"></td>
+        <td>
+            <!-- Кнопка "Update" -->
+            <input type="button" value="Update"
+                   th:onclick="|window.location.href='@{/updateUser(id=${user.id})}'|">
+
+            <input type="button" value="Delete"
+                   th:onclick="|window.location.href='@{/deleteUser(id=${user.id})}'|">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<!-- Кнопка "Add" -->
+<input type="button" value="Add"
+       th:onclick="|window.location.href='@{/new}'|"/>
+
+</body>
+</html>
